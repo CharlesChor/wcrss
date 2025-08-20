@@ -42,22 +42,3 @@ ENV DATABASE_TYPE="sqlite"
 RUN chmod +x ./docker-bootstrap.sh
 
 CMD ["./docker-bootstrap.sh"]
-
-
-FROM base AS app
-COPY --from=build /app /app
-
-WORKDIR /app
-
-EXPOSE 4000
-
-ENV NODE_ENV=production
-ENV HOST="0.0.0.0"
-ENV SERVER_ORIGIN_URL=""
-ENV MAX_REQUEST_PER_MINUTE=60
-ENV AUTH_CODE="123567"
-ENV DATABASE_URL="file:../data/wewe-rss.db"
-
-RUN chmod +x ./docker-bootstrap.sh
-
-CMD ["./docker-bootstrap.sh"]
