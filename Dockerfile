@@ -8,7 +8,9 @@ FROM base AS build
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 
-RUN --mount=type=cache,id=s/888afa6e-b883-47b8-8217-8bc02b74ab33-/pnpm/store,target=/pnpm/store pnpm install --frozen-lockfile
+ARG RAILWAY_SERVICE_ID
+
+RUN --mount=type=cache,id=s/${RAILWAY_SERVICE_ID}-/pnpm/store,target=/pnpm/store pnpm install --frozen-lockfile
 
 RUN pnpm run -r build
 
@@ -33,7 +35,7 @@ ENV NODE_ENV=production
 ENV HOST="0.0.0.0"
 ENV SERVER_ORIGIN_URL=""
 ENV MAX_REQUEST_PER_MINUTE=60
-ENV AUTH_CODE=""
+ENV AUTH_CODE="123567"
 ENV DATABASE_URL="file:../data/wewe-rss.db"
 ENV DATABASE_TYPE="sqlite"
 
@@ -53,8 +55,8 @@ ENV NODE_ENV=production
 ENV HOST="0.0.0.0"
 ENV SERVER_ORIGIN_URL=""
 ENV MAX_REQUEST_PER_MINUTE=60
-ENV AUTH_CODE=""
-ENV DATABASE_URL=""
+ENV AUTH_CODE="123567"
+ENV DATABASE_URL="file:../data/wewe-rss.db"
 
 RUN chmod +x ./docker-bootstrap.sh
 
