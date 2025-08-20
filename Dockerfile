@@ -12,8 +12,8 @@ RUN --mount=type=cache,id=s/888afa6e-b883-47b8-8217-8bc02b74ab33-/pnpm/store,tar
 
 RUN pnpm run -r build
 
-RUN pnpm deploy --filter=server --prod /app
-RUN pnpm deploy --filter=server --prod /app-sqlite
+RUN pnpm deploy --filter=server --prod /app --legacy
+RUN pnpm deploy --filter=server --prod /app-sqlite --legacy
 
 RUN cd /app && pnpm exec prisma generate
 
