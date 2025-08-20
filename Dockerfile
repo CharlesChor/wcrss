@@ -10,7 +10,7 @@ WORKDIR /usr/src/app
 
 ARG RAILWAY_SERVICE_ID
 
-RUN --mount=type=cache,id=s/${RAILWAY_SERVICE_ID}-/pnpm/store,target=/pnpm/store pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=s/$RAILWAY_SERVICE_ID-/pnpm/store,target=/pnpm/store pnpm install --frozen-lockfile
 
 RUN pnpm run -r build
 
